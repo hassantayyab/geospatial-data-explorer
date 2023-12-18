@@ -1,38 +1,89 @@
-.App {
-  text-align: center;
+:root {
+  --primary-color: #0664a8;
+  --grey-color: #dddddd;
+  --light-background-color: #f0f0f0;
+  --lighter-background-color: #f8f8f8;
+  --light-text-color: #f0f9ff;
+  --dark-text-color: #1e2022;
+  --border-radius: 14px;
+  --smaller-border-radius: 8px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  height: 100vh;
+  overflow: hidden;
+  padding: 0;
+  color: var(--dark-text-color) !important;
+  background-color: var(--lighter-background-color) !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+button,
+[type='button'],
+[type='submit'] {
+  margin: 0;
+  background: var(--primary-color);
+  color: var(--light-text-color) !important;
+  transition: filter 0.3s ease;
+}
+
+button:hover,
+[type='button']:hover,
+[type='submit']:hover {
+  background: var(--primary-color);
+  color: var(--light-text-color) !important;
+  filter: brightness(90%);
+}
+
+s {
+  font-size: inherit;
+}
+
+p,
+s,
+small,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+label,
+input,
+span {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  padding: 0;
+}
+
+.search-col {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 20px;
+  flex-basis: 60%;
+  background-color: var(--light-background-color);
+  padding: 16px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 750px) {
+  body {
+    height: unset;
+    overflow: unset;
   }
-  to {
-    transform: rotate(360deg);
+
+  .container {
+    margin: 0;
+    flex-direction: column;
   }
 }

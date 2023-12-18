@@ -1,0 +1,36 @@
+.file-input-container {
+  display: flex;
+  gap: 8px;
+  padding: 16px;
+  align-items: center;
+  border: 1px solid var(--grey-color);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  background-color: var(--lighter-background-color);
+}
+
+.file-input-container .info {
+  display: block;
+}
+
+.file-input-container .info p {
+  margin: 0;
+}
+
+.file-input-container .info small {
+  display: block;
+}
+
+.file-input-container input {
+  visibility: hidden;
+  width: 0;
+}
+
+.upload-img {
+  width: 32px;
+}
+
+.remove-img {
+  margin-left: auto;
+  width: 20px;
+}

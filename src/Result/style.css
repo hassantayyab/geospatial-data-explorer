@@ -1,0 +1,34 @@
+.results-container {
+  height: 100vh;
+  overflow-y: auto;
+  padding: 0;
+  flex-basis: 40%;
+  padding: 20px 20px 0 20px;
+  position: relative;
+}
+
+.card {
+  max-width: unset;
+  padding: 12px;
+  border-radius: var(--border-radius);
+  margin: 0 0 16px;
+}
+
+.card-title {
+  margin: 0 0 8px 0;
+}
+
+.buttons-container {
+  position: sticky;
+  padding: 20px 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  background-color: var(--lighter-background-color);
+}
+
+.buttons-container button {
+  border-radius: var(--smaller-border-radius);
+}
