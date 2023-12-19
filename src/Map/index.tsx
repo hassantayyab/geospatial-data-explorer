@@ -27,7 +27,7 @@ function MapComponent({ setMapIntersects }: MapProps) {
     google.maps.drawing.DrawingManager | undefined
   >(undefined)
 
-  const { isLoaded, loadError } = useJsApiLoader({
+  const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY || '',
     libraries: ['drawing'],
   })

@@ -2,16 +2,12 @@ import { ChangeEvent, FormEvent, useRef, useState } from 'react'
 import './App.css'
 import Result from './Result'
 import Search from './Search'
-import { AOI, AOIEnum } from './aoi'
 import { Intersects } from './intersects'
 import MapContainer from './Map'
-
-const NUM_REGEX = /^-?(\d{1,})?(\.\d{0,4})?$/
 
 function App() {
   const fileInputRef = useRef<File | undefined>(undefined)
 
-  const [aoi, setAOI] = useState<AOI | undefined>(undefined)
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState<Date | undefined>(undefined)
   const [dateRange, setDateRange] = useState<string | undefined>(undefined)
@@ -23,21 +19,6 @@ function App() {
   )
   const [isSubmitted, setSubmitted] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
-
-  const handleAoiChange = (
-    event: ChangeEvent<HTMLInputElement>,
-    key: AOIEnum
-  ) => {
-    setSubmitted(false)
-
-    const coordinates = event.target.value
-
-    if (!coordinates.match(NUM_REGEX)) {
-      return
-    }
-
-    setAOI({ ...aoi, [key]: coordinates })
-  }
 
   const handleDateChange = (dates: [Date, Date]) => {
     setSubmitted(false)
@@ -60,7 +41,6 @@ function App() {
         try {
           const content = JSON.parse(reader.result as string)
           setFileIntersects(content.features[0].geometry)
-          setAOI(undefined)
         } catch (error) {
           console.error('Error parsing geo JSON file:', error)
           setFileIntersects(undefined)
@@ -115,13 +95,11 @@ function App() {
         <MapContainer setMapIntersects={setMapIntersects} />
 
         <Search
-          aoi={aoi}
           startDate={startDate}
           endDate={endDate}
           fileIntersects={fileIntersects}
           mapIntersects={mapIntersects}
           selectedFile={fileInputRef.current}
-          handleAoiChange={handleAoiChange}
           handleDateChange={handleDateChange}
           removeFile={removeFile}
           handleFileChange={handleFileChange}
@@ -130,7 +108,6 @@ function App() {
       </div>
 
       <Result
-        aoi={aoi}
         dateRange={dateRange}
         intersects={mapIntersects || fileIntersects}
         isSubmitted={isSubmitted}

@@ -9,7 +9,6 @@ const COLLECTIONS = 'landsat-c2l1,landsat-c2l2-st'
 const PAGE_SIZE = 10
 
 function Result({
-  aoi,
   dateRange,
   intersects,
   currentPage,
@@ -34,7 +33,6 @@ function Result({
               collections: COLLECTIONS,
               limit: PAGE_SIZE,
               page: currentPage,
-              ...(aoi && !intersects && { bbox: Object.values(aoi).join(',') }),
               ...(dateRange && { datetime: dateRange }),
               ...(intersects && {
                 intersects: JSON.stringify(intersects),
@@ -60,7 +58,7 @@ function Result({
 
       loadResults()
     }
-  }, [aoi, dateRange, intersects, isSubmitted, currentPage])
+  }, [dateRange, intersects, isSubmitted, currentPage])
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1)

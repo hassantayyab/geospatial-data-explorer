@@ -1,11 +1,9 @@
 import './style.css'
-import { AOIEnum } from '../aoi'
 import DatePicker from 'react-datepicker'
 import { SearchProps } from './search-props'
 import FileSelectInput from '../FileSelectInput'
 
 function Search({
-  aoi,
   startDate,
   endDate,
   mapIntersects,
@@ -13,7 +11,6 @@ function Search({
   selectedFile,
   removeFile,
   handleSubmit,
-  handleAoiChange,
   handleDateChange,
   handleFileChange,
 }: SearchProps) {
@@ -25,38 +22,6 @@ function Search({
         handleFileChange={handleFileChange}
       />
 
-      {/* Area of interest coordinates */}
-      {/* <label>Enter AOI coordinates</label>
-      <input
-        type="text"
-        value={aoi?.[AOIEnum.a]}
-        className="coordinate-input"
-        onChange={(e) => handleAoiChange(e, AOIEnum.a)}
-        disabled={!!fileIntersects}
-      />
-      <input
-        type="text"
-        value={aoi?.[AOIEnum.b]}
-        className="coordinate-input"
-        onChange={(e) => handleAoiChange(e, AOIEnum.b)}
-        disabled={!!fileIntersects}
-      />
-      <input
-        type="text"
-        value={aoi?.[AOIEnum.c]}
-        className="coordinate-input"
-        onChange={(e) => handleAoiChange(e, AOIEnum.c)}
-        disabled={!!fileIntersects}
-      />
-      <input
-        type="text"
-        value={aoi?.[AOIEnum.d]}
-        className="coordinate-input"
-        onChange={(e) => handleAoiChange(e, AOIEnum.d)}
-        disabled={!!fileIntersects}
-      /> */}
-
-      {/* Date range */}
       <div className="date-range-container">
         <label className="date-range-label" htmlFor="date-range">
           Enter Date range
