@@ -2,6 +2,8 @@
 
 DEMO: https://hassantayyab.github.io/geospatial-data-explorer/
 
+DEMO Video: [Watch the video](https://www.youtube.com/watch?v=NoVjctANjck)
+
 ## Description
 
 I have used a simple React library along with Axios for API calls, typescript for strict typing, and mini.css for basic styling.
