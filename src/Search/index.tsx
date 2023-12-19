@@ -40,7 +40,7 @@ function Search({
       <button
         className="search-btn"
         type="submit"
-        disabled={!fileIntersects && !mapIntersects}
+        disabled={(!fileIntersects && !mapIntersects) || !startDate || !endDate}
       >
         Search
       </button>
