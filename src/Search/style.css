@@ -27,3 +27,10 @@
   margin-top: 12px;
   border-radius: var(--smaller-border-radius);
 }
+
+@media (max-width: 750px) {
+  .date-range-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -6,7 +6,7 @@
 
 .google-map {
   width: 100%;
-  height: 500px;
+  height: 58vh;
 }
 
 .delete-button {
@@ -33,4 +33,11 @@
 .delete-button img {
   height: 16px;
   width: 16px;
+}
+
+@media (max-width: 750px) {
+  .google-map {
+    width: 100%;
+    height: 50vh;
+  }
 }

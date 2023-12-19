@@ -20,9 +20,8 @@ import {
   isOverlayPolygonEvent,
 } from './helpers'
 
-function MapComponent({ setMapIntersects }: MapProps) {
-  const polygonRefs = useRef<PolygonRef[]>([])
-  const activePolygonIndex = useRef<number | undefined>(undefined)
+function MapComponent({ setSubmitted, setMapIntersects }: MapProps) {
+  const polygonRef = useRef<PolygonRef | undefined>(undefined)
   const drawingManagerRef = useRef<
     google.maps.drawing.DrawingManager | undefined
   >(undefined)
@@ -34,9 +33,9 @@ function MapComponent({ setMapIntersects }: MapProps) {
     libraries: ['drawing'],
   })
 
-  const [polygons, setPolygons] = useState<
-    Array<Array<google.maps.LatLngLiteral>>
-  >([])
+  const [polygon, setPolygon] = useState<
+    Array<google.maps.LatLngLiteral> | undefined
+  >(undefined)
 
   const [center, setCenter] = useState<google.maps.LatLngLiteral | undefined>(
     DEFAULT_LAT_LNG
@@ -57,8 +56,8 @@ function MapComponent({ setMapIntersects }: MapProps) {
     drawingManagerRef.current = drawingManager
   }
 
-  const loadPolygon = (polygon: google.maps.Polygon, index: number) => {
-    polygonRefs.current[index] = { current: polygon }
+  const loadPolygon = (polygon: google.maps.Polygon) => {
+    polygonRef.current = { current: polygon }
   }
 
   const handleOverlayComplete = (
@@ -75,9 +74,8 @@ function MapComponent({ setMapIntersects }: MapProps) {
       const startPoint = newPolygon[0]
       newPolygon.push(startPoint)
       overlayEvent.overlay?.setMap(null)
-      console.log('newPolygon', newPolygon)
 
-      setPolygons([...polygons, newPolygon])
+      setPolygon(newPolygon)
       setMapIntersects({
         type: 'Polygon',
         coordinates: latLngsToCoordinates(newPolygon),
@@ -85,19 +83,14 @@ function MapComponent({ setMapIntersects }: MapProps) {
     }
   }
 
-  const selectPolygon = (index: number) => {
-    activePolygonIndex.current = index
-  }
+  const editPolygon = () => {
+    if (polygonRef.current?.current) {
+      const latLngCoords = polygonRef.current.current
+        .getPath()
+        .getArray()
+        .map(getLatLng)
 
-  const editPolygon = (index: number) => {
-    const polygonRef = polygonRefs.current[index].current
-    if (polygonRef) {
-      const latLngCoords = polygonRef.getPath().getArray().map(getLatLng)
-
-      const allPolygons = [...polygons]
-      allPolygons[index] = latLngCoords
-      console.log('allPolygons', allPolygons)
-      setPolygons(allPolygons)
+      setPolygon(latLngCoords)
       setMapIntersects({
         type: 'Polygon',
         coordinates: latLngsToCoordinates(latLngCoords),
@@ -106,10 +99,9 @@ function MapComponent({ setMapIntersects }: MapProps) {
   }
 
   const deleteSelectedPolygon = () => {
-    const filtered = polygons.filter(
-      (polygon, index) => index !== activePolygonIndex.current
-    )
-    setPolygons(filtered)
+    setSubmitted(false)
+    setPolygon(undefined)
+    setMapIntersects(undefined)
   }
 
   return isLoaded ? (
@@ -135,19 +127,17 @@ function MapComponent({ setMapIntersects }: MapProps) {
           onOverlayComplete={handleOverlayComplete}
           options={drawingManagerOptions}
         />
-        {polygons.map((latlng, index) => (
+        {polygon && (
           <Polygon
-            key={index}
-            onLoad={(event) => loadPolygon(event, index)}
-            onMouseDown={() => selectPolygon(index)}
-            onMouseUp={() => editPolygon(index)}
-            onDragEnd={() => editPolygon(index)}
+            onLoad={(event) => loadPolygon(event)}
+            onMouseUp={() => editPolygon()}
+            onDragEnd={() => editPolygon()}
             options={POLYGON_OPTIONS}
-            paths={latlng}
+            paths={polygon}
             draggable
             editable
           />
-        ))}
+        )}
       </GoogleMap>
     </div>
   ) : (

@@ -92,7 +92,10 @@ function App() {
       <div className="search-col">
         <h6>{renderInfoText()}</h6>
 
-        <MapContainer setMapIntersects={setMapIntersects} />
+        <MapContainer
+          setSubmitted={setSubmitted}
+          setMapIntersects={setMapIntersects}
+        />
 
         <Search
           startDate={startDate}
