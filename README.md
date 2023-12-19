@@ -1,6 +1,6 @@
-# Task for Frontend Developer Postion
+# Geospatial Data Explorer Web Application
 
-Project: Geospatial Data Explorer Web Application
+DEMO: https://hassantayyab.github.io/geospatial-data-explorer/
 
 ## Description
 
