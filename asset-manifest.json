@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/geospatial-data-explorer/static/css/main.07ed3ff4.css",
-    "main.js": "/geospatial-data-explorer/static/js/main.315d622f.js",
+    "main.css": "/geospatial-data-explorer/static/css/main.345b9f81.css",
+    "main.js": "/geospatial-data-explorer/static/js/main.dfdf92bd.js",
     "static/js/787.f488d3ad.chunk.js": "/geospatial-data-explorer/static/js/787.f488d3ad.chunk.js",
     "index.html": "/geospatial-data-explorer/index.html",
-    "main.07ed3ff4.css.map": "/geospatial-data-explorer/static/css/main.07ed3ff4.css.map",
-    "main.315d622f.js.map": "/geospatial-data-explorer/static/js/main.315d622f.js.map",
+    "main.345b9f81.css.map": "/geospatial-data-explorer/static/css/main.345b9f81.css.map",
+    "main.dfdf92bd.js.map": "/geospatial-data-explorer/static/js/main.dfdf92bd.js.map",
     "787.f488d3ad.chunk.js.map": "/geospatial-data-explorer/static/js/787.f488d3ad.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.07ed3ff4.css",
-    "static/js/main.315d622f.js"
+    "static/css/main.345b9f81.css",
+    "static/js/main.dfdf92bd.js"
   ]
 }
