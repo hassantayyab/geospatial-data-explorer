@@ -22,12 +22,3 @@ export const POLYGON_OPTIONS: google.maps.PolygonOptions = {
   draggable: true,
   editable: true,
 }
-
-export const DRAWING_MANAGER_OPTIONS: google.maps.drawing.DrawingManagerOptions = {
-  polygonOptions: POLYGON_OPTIONS,
-  drawingControl: true,
-  drawingControlOptions: {
-    position: window.google?.maps?.ControlPosition?.BOTTOM_LEFT,
-    drawingModes: [window.google?.maps.drawing.OverlayType.POLYGON],
-  },
-}
